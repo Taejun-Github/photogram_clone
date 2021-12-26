@@ -10,6 +10,7 @@ public class ViewControllerTest {
 	public String signupPage() {
 		return "auth/signup";
 	}
+	//주석
 	
 	@GetMapping("/auth/signin")
 	public String signinPage() {
