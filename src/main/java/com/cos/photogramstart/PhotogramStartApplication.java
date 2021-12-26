@@ -8,7 +8,7 @@ public class PhotogramStartApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PhotogramStartApplication.class, args);
-		//주석을 달아서 테스트
+		//주석을 달아서 테스트하기
 	}
 
 }
