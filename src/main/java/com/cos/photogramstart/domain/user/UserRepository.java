@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	//<오브젝트, 기본키의 타입>
 	
-
+	
 }
