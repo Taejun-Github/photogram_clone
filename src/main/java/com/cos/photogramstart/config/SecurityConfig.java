@@ -1,18 +1,28 @@
 package com.cos.photogramstart.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity //해당 파일로 시큐리티를 활성화한다는 뜻의 어노테이션이다.
-@Configurable // IoC 메모리에 등록한다.
+@Configuration // IoC 메모리에 등록한다.
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	//IoC 컨테이너가 들고있게 된다.
+	@Bean
+	public BCryptPasswordEncoder encode() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	//pom.xml에서 security를 dependency에 추가하면 여기에 따로 허용하는 페이지를 만들기 전까지 모든 페이지를 login 페이지로 리다이렉트한다.
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 //		super.configure(http);
 		//super를 없애면 - 기존 시큐리티가 가지고 있는 기능이 전부 비활성화된다. 즉, 리다이렉트를 하지 않는다.
+		http.csrf().disable();
 		http.authorizeRequests()
 			.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated()
 			.anyRequest().permitAll()

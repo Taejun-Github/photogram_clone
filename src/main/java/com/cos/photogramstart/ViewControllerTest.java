@@ -6,16 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ViewControllerTest {
 
-	@GetMapping("/auth/signup")
-	public String signupPage() {
-		return "auth/signup";
-	}
-	//주석
-	
-	@GetMapping("/auth/signin")
-	public String signinPage() {
-		return "auth/signin";
-	}
 	
 	@GetMapping("/image/story")
 	public String storyPage() {
