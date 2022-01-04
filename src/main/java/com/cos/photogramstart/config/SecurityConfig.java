@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
-			.loginPage("/auth/signin")
+			.loginPage("/auth/signin") //GET으로 접근했을 때
+			.loginProcessingUrl("/auth/signin") //POST로 접근했을 때 스프링 시큐리티가 로그인 프로세스를 진행한다.
 			.defaultSuccessUrl("/");
 		//어떤 뜻? antMatchers에서 지정한 링크는 로그인을 요구하고 나머지 링크는 허용한다.
 		//그리고 로그인으로 할 페이지는 /auth/signin 페이지로 간다.
