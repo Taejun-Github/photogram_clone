@@ -22,12 +22,14 @@
 			<!--프로필셋팅 아이디영역end-->
 
 			<!--프로필 수정-->
-			<form id="profileUpdate">
+			<form id="profileUpdate" onsubmit="update(${principal.user.id}, event)">
+				<!-- js에서 폼태그 액션을 무효화하는 이유? action이 적혀있지 않으므로 submit을 할 때 자기 자신에게 되돌아오는 디폴트 액션이 적용된다.
+				따라서 그것을 막아야 제대로 js의 로직대로 실행된다. -->
 				<div class="content-item__02">
 					<div class="item__title">이름</div>
 					<div class="item__input">
 						<input type="text" name="name" placeholder="이름"
-							value="${principal.user.name }" />
+							value="${principal.user.name }" required="required"/>
 					</div>
 				</div>
 				<div class="content-item__03">
@@ -40,7 +42,7 @@
 				<div class="content-item__04">
 					<div class="item__title">패스워드</div>
 					<div class="item__input">
-						<input type="password" name="password" placeholder="패스워드"  />
+						<input type="password" name="password" placeholder="패스워드"  required="required"/>
 					</div>
 				</div>
 				<div class="content-item__05">
@@ -88,7 +90,7 @@
 				<div class="content-item__11">
 					<div class="item__title"></div>
 					<div class="item__input">
-						<button type="button" onclick="update(${principal.user.id})">제출</button>
+						<button>제출</button>
 					</div>
 				</div>
 				<!--제출버튼end-->
