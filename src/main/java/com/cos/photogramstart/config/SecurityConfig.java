@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//super를 없애면 - 기존 시큐리티가 가지고 있는 기능이 전부 비활성화된다. 즉, 리다이렉트를 하지 않는다.
 		http.csrf().disable();
 		http.authorizeRequests()
-			.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated()
+			.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**, ", "/api/**").authenticated()
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
