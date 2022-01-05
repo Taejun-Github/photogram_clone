@@ -20,7 +20,11 @@ public class ControllerExceptionHandler {
 	// 런타임 Exception이 발동하는 모든 것에 대해서
 	public String validationException(CustomValidationException e) {
 
-		return Script.back(e.getMessage().toString());
+		if(e.getErrorMap() == null) {
+			return Script.back(e.getMessage());
+		} else {
+			return Script.back(e.getMessage().toString());
+		}
 
 		// 공통응답 dto로 응답하는 방법은 이렇다.
 		// return new CMRespDto<Map<String, String>>(-1, e.getMessage(),
