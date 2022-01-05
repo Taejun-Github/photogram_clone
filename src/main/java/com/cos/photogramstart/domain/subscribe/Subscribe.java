@@ -30,6 +30,7 @@ import lombok.NoArgsConstructor;
 						name="subscribe_uk",
 						columnNames= {"fromUserId", "toUserId"}
 				)
+				//두 컬럼으로 유니크 제약 조건을 만드는 것이다.
 		}
 )
 public class Subscribe {
