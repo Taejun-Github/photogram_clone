@@ -38,7 +38,6 @@ public class UserApiController {
 			
 			for(FieldError error : bindingResult.getFieldErrors()) {
 				errorMap.put(error.getField(), error.getDefaultMessage());
-				//System.out.println(error.getDefaultMessage());
 			}
 			throw new CustomValidationApiException("유효성 검사 실패", errorMap);
 		} else {
@@ -47,6 +46,7 @@ public class UserApiController {
 			principalDetails.setUser(userEntity);
 			//이렇게 세션에도 반영해주어야 한다
 			return new CMRespDto<>(1, "회원수정 완료", userEntity);
+			//응답시에 userEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
 		}
 	
 	}
