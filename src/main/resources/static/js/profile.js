@@ -10,8 +10,8 @@
   (8) 구독자 정보 모달 닫기
  */
 
-// (1) 유저 프로파일 페이지 구독하기, 구독취소
-function toggleSubscribe(obj) {
+//(3) 구독자 정보 모달에서 구독하기, 구독취소
+function toggleSubscribeModal(obj) {
 	if ($(obj).text() === "구독취소") {
 		$(obj).text("구독하기");
 		$(obj).toggleClass("blue");
@@ -30,15 +30,33 @@ function getSubscribeModalItem() {
 
 }
 
-
-// (3) 구독자 정보 모달에서 구독하기, 구독취소
-function toggleSubscribeModal(obj) {
+// (1) 유저 프로파일 페이지 구독하기, 구독취소
+function toggleSubscribe(toUserId, obj) {
 	if ($(obj).text() === "구독취소") {
-		$(obj).text("구독하기");
-		$(obj).toggleClass("blue");
+		//이미 구독이 되어있는 상태
+		$.ajax({
+			type: "delete",
+			url: "/api/subscribe/" + toUserId,
+			dataType: "json"
+		}).done(res => {
+			$(obj).text("구독하기");
+			$(obj).toggleClass("blue");
+		}).fail(error => {
+			console.log("구독취소 실패", error);
+		});
+
 	} else {
-		$(obj).text("구독취소");
-		$(obj).toggleClass("blue");
+		//구독이 되어있지 않은 상태
+		$.ajax({
+			type: "post",
+			url: "/api/subscribe/" + toUserId,
+			dataType: "json"
+		}).done(res => {
+			$(obj).text("구독취소");
+			$(obj).toggleClass("blue");
+		}).fail(error => {
+			console.log("구독하기 실패", error);
+		});
 	}
 }
 

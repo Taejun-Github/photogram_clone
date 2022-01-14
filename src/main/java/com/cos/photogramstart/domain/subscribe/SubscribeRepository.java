@@ -14,4 +14,10 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Integer>{
 	@Query(value="DELETE FROM subscribe WHERE fromUserId =:fromUserId AND toUserId=:toUserId", nativeQuery = true)
 	void mUnSubscribe(int fromUserId, int toUserId);
 	//:의 의미는 무엇일까? 밑의 변수에 바인딩하겠다는 문법이다.
+	
+	@Query(value="SELECT COUNT(*) FROM subscribe WHERE fromUserId=:principalId AND toUserId=:pageUserId", nativeQuery = true) //SELECT만 하는 경우에는 Modifying 어노테이션이 필요없다.
+	int mSubscribeState(int principalId, int pageUserId);
+	
+	@Query(value="SELECT COUNT(*) FROM subscribe WHERE fromUserId=:pageUserId", nativeQuery = true) 
+	int mSubscribeCount(int pageUserId);
 }
