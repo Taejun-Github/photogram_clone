@@ -153,6 +153,7 @@
 					<button class="cta blue" onclick="toggleSubscribeModal(this)">구독취소</button>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
