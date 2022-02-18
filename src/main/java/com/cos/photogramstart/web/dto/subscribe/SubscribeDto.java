@@ -13,6 +13,6 @@ public class SubscribeDto {
 	private int id;
 	private String username;
 	private String profileImageUrl;
-	private Integer subscribeState;
+	private Integer subscribeState; // Integer인 이유? int로 하면 쿼리문을 제대로 받지 못하는 문제점이 있다.
 	private Integer equalUserState;
 }
