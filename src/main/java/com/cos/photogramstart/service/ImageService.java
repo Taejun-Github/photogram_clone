@@ -3,7 +3,6 @@ package com.cos.photogramstart.service;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +27,20 @@ public class ImageService {
 	@Transactional(readOnly = true)
 	public Page<Image> 이미지스토리(int principalId, Pageable pageable) {
 		Page<Image> images = imageRepository.mStory(principalId, pageable);
+		
+		//images에 좋아요 상태를 담아야 한다.
+		images.forEach((image)->{
+			
+			image.setLikeCount(image.getLikes().size());
+			
+			image.getLikes().forEach((like)->{
+				if(like.getUser().getId() == principalId) {
+					//like에서 가져온 id가 principalId와 같으면 로그인한 사용자가 좋아요 했다는 의미
+					//해당 이미지에 좋아요한 사람들을 찾아서 현재 로그인한 사람이 좋아요 한 것인지 비교한다.
+					image.setLikeState(true);
+				}
+			});
+		});
 		
 		return images;
 	}
