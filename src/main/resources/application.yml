@@ -35,6 +35,12 @@ spring:
     user:
       name: test
       password: 1234   
+      
+    oauth2:      client:        registration:          facebook:
+            client-id: 1745442639120130
+            client-secret: adccddf87e6df9757aa3526e9ce98a8d
+            scope:            - public_profile
+            - email
 
 file:
   path: C:/Users/ausch/workspace/springbootwork/upload/
