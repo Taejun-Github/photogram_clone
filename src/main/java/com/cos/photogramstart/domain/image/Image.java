@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.Transient;
 
+import com.cos.photogramstart.domain.comment.Comment;
 import com.cos.photogramstart.domain.likes.Likes;
 import com.cos.photogramstart.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -50,6 +52,11 @@ public class Image {
 	
 	@Transient
 	private int likeCount;
+	
+	@OrderBy("id DESC")
+	@JsonIgnoreProperties({"image"})
+	@OneToMany(mappedBy="image")
+	private List<Comment> comments;
 
 	@PrePersist // DB에 insert되기 직전에 자동으로 실행된다.
 	public void createDate() {
